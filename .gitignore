@@ -1,0 +1,13 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# 会话数据一律不进仓库（任何人的聊天记录都不该被提交）
+sessions/
+*.jsonl
+*.jsonl.zstd
+*.zstd
+
+# 本地验证输出
+test/tmp/

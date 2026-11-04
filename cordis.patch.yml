@@ -1,0 +1,7 @@
+# dsh-session-grep —— DSH bundle 插件挂载声明
+#
+# 这个插件只注册一个工具（dsh_session）和一个 CLI，不碰宿主其它部分。
+# 稳定用法是 CLI 与 skill；工具注册在不同 DSH 版本上可能不生效，失败时只打日志。
+- insert:
+    - id: dsh-session-grep
+      name: dsh-session-grep

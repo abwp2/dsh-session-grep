@@ -1,0 +1,24 @@
+{
+  "name": "dsh-session-grep",
+  "version": "0.1.0",
+  "description": "Read DeepSeek Harness session transcripts: sessions are multi-frame zstd, so plain grep finds nothing. This unpacks the frames and lets you fetch exact quotes by seq.",
+  "keywords": ["dsh", "dsh-plugin", "deepseek-harness", "session", "zstd", "transcript"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abwp2/dsh-session-grep.git"
+  },
+  "homepage": "https://github.com/abwp2/dsh-session-grep#readme",
+  "bugs": {
+    "url": "https://github.com/abwp2/dsh-session-grep/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "bin": { "dsh-session": "bin/cli.mjs" },
+  "files": ["lib", "bin", "skill", "cordis.patch.yml", "README.md", "LICENSE"],
+  "engines": { "node": ">=22.15" },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  }
+}
