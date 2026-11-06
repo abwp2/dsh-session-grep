@@ -10,6 +10,19 @@ dsh-session around session-a1b2c3d4 120 3      # 再看那条前后说了什么
 dsh-session find "那条命令|部署方式"             # 或者全库正则搜
 ```
 
+## English
+
+DeepSeek Harness stores every session as a multi-frame zstd file: each append adds another frame, and `zstdDecompressSync` only decodes the first one, so a plain `grep` finds nothing even when the text is right there. This package splits the frames, decompresses them in order, and indexes messages by `seq`, so you can pull exact quotes instead of guessing.
+
+```bash
+dsh-session list                               # sessions: id, time, count, workspace, title
+dsh-session title deploy                       # find a session by its generated title
+dsh-session find "pattern|alternative" 3       # regex search, with context
+dsh-session around session-a1b2c3d4 120 3      # N messages before and after a seq
+```
+
+Read-only: it never writes, modifies, or deletes session files, makes no network calls, and needs no API key. Requires Node >= 22.15 (for the built-in `zlib.zstdDecompressSync`).
+
 ## 为什么需要它
 
 真实场景：会话里明明有那句话，两个 agent 各自 grep 了会话目录，都得到「零命中」，
